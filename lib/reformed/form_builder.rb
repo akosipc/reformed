@@ -2,7 +2,7 @@ module Reformed
   class FormBuilder < ActionView::Helpers::FormBuilder
     include ActionView::Helpers::OutputSafetyHelper
 
-    cattr_accessor :input_wrapper, :label_wrapper, :html5, :error_wrapper
+    cattr_accessor :input_wrapper, :label_wrapper, :html5, :error_wrapper, :hint_wrapper, :action_wrapper
 
     @@html5 = true
 
@@ -22,6 +22,10 @@ module Reformed
       "<span class=\"error\">#{message}</span>"
     }
 
+    @@action_wrapper = lambda { |message, options|
+      "<div class=\"input-control\">#{controls[:action]}}</div>"
+    }
+
     def input(method, options = {}, &block)
       controls = {}
 
@@ -38,6 +42,12 @@ module Reformed
       controls[:input] = input_wrap(method, control_options(options))
 
       raw @@input_wrapper.call(controls, options)
+    end
+
+    def action(method, options = {}, &block)
+      controls = input method, options
+
+      raw @@action_wrapper.call(controls, options)
     end
 
     def input_wrap(method, options, &block)
