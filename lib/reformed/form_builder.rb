@@ -44,8 +44,8 @@ module Reformed
       raw @@input_wrapper.call(controls, options)
     end
 
-    def action(method, options = {}, &block)
-      controls = input method, options
+    def action(text, options = {}, &block)
+      controls[:action] = submit text, options
 
       raw @@action_wrapper.call(controls, options)
     end
