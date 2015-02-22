@@ -4,5 +4,5 @@ require "reformed/form_helper"
 
 module Reformed
 
-  
+
 end
