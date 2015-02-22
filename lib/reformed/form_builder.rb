@@ -53,8 +53,7 @@ module Reformed
     end
 
     def input_wrap(method, options, &block)
-      whatami = options[:as] || as(method)
-      whatami ||= :text
+      whatami = options[:as].to_sym || as(method)
       options.delete(:as)
 
       case whatami
