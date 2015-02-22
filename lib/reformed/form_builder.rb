@@ -27,25 +27,27 @@ module Reformed
     }
 
     def input(method, options = {}, &block)
-      controls = {}
+      controls = {}.tap do |controls|
+        if options[:hint]
+          controls[:hint] = hint_wrap(options.delete(:hint), control_options(options))
+        end
 
-      if options[:hint]
-        controls[:hint] = hint_wrap(options.delete(:hint), control_options(options))
+        if options[:error]
+          controls[:error] = error_wrap(options.delete(:error), control_options(options))
+        end
+
+        controls[:label] = label_wrap(method, control_options(options.merge(method: method), :label))
+
+        controls[:input] = input_wrap(method, control_options(options))
       end
-
-      if options[:error]
-        controls[:error] = error_wrap(options.delete(:error), control_options(options))
-      end
-
-      controls[:label] = label_wrap(method, control_options(options.merge(method: method), :label))
-
-      controls[:input] = input_wrap(method, control_options(options))
 
       raw @@input_wrapper.call(controls, options)
     end
 
     def action(text, options = {}, &block)
-      controls[:action] = submit text, options
+      controls = {}.tap do |controls|
+        controls[:action] = submit text, options
+      end
 
       raw @@action_wrapper.call(controls, options)
     end
@@ -148,3 +150,4 @@ module Reformed
 
   end
 end
+
