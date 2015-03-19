@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mocha"
   spec.add_development_dependency "rake"
 
-  spec.add_dependency('activerecord', '>= 4.0.0', '< 4.2')
-  spec.add_dependency('railties', '>= 4.0.0', '< 4.2')
-  spec.add_dependency('activemodel', '>= 4.0.0', '< 4.2')
-  spec.add_dependency('actionpack', '>= 4.0.0', '< 4.2')
-  spec.add_dependency('activesupport', '>= 4.0.0', '< 4.2')
+  spec.add_dependency("activerecord", ">= 4.0.0", "<= 4.2")
+  spec.add_dependency("railties", ">= 4.0.0", "<= 4.2")
+  spec.add_dependency("activemodel", ">= 4.0.0", "<= 4.2")
+  spec.add_dependency("actionpack", ">= 4.0.0", "<= 4.2")
+  spec.add_dependency("activesupport", ">= 4.0.0", "<= 4.2")
 end
