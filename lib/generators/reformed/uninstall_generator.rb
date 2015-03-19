@@ -6,11 +6,9 @@ module Reformed
 
     desc "Reformed Installation"
 
-    def install
-      initializer = (File.open(Rails.root.join("config/initializers/reformed.rb")) rescue nil).try :read
-      template "reformed.erb", "config/initializers/glass.rb" unless initializer
+    def uninstall
+      remove_file "config/initializers/reformed.rb"
     end
-
   end
 end
 
