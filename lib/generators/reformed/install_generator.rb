@@ -8,7 +8,7 @@ module Reformed
 
     def install
       initializer = (File.open(Rails.root.join("config/initializers/reformed.rb")) rescue nil).try :read
-      template "reformed.erb", "config/initializers/glass.rb" unless initializer
+      template "reformed.erb", "config/initializers/reformed.rb" unless initializer
     end
 
   end
